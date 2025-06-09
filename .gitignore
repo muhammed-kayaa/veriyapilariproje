@@ -19,6 +19,7 @@ rad.json
 #License-file
 *.flf
 #Test results file
+<<<<<<< HEAD
 TestResults.xml
 
 # Flutter specific files for Android
@@ -34,3 +35,6 @@ TestResults.xml
 **/.flutter-plugins
 **/.flutter-plugins-dependencies
 **/.metadata
+=======
+TestResults.xml
+>>>>>>> c4409d66e9ef60a2f7f5b77f6c4824e214b4aedb
