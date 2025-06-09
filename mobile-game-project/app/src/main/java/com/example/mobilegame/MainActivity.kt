@@ -14,11 +14,15 @@ class MainActivity : AppCompatActivity() {
         val settingsButton = findViewById<Button>(R.id.settingsButton)
 
         startGameButton.setOnClickListener {
-            // Oyuna başla ekranına geçiş yapılacak (şimdilik boş bırakılabilir)
+            // Oyuna başla ekranına geçiş yapılacak
+            val intent = Intent(this, GameActivity::class.java)
+            startActivity(intent)
         }
 
         settingsButton.setOnClickListener {
-            // Ayarlar ekranına geçiş yapılacak (şimdilik boş bırakılabilir)
+            // Ayarlar ekranına geçiş yapılacak
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
         }
     }
 }
