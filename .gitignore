@@ -20,3 +20,17 @@ rad.json
 *.flf
 #Test results file
 TestResults.xml
+
+# Flutter specific files for Android
+**/build/
+**/.dart_tool/
+**/.idea/
+**/.vscode/
+**/pubspec.lock
+**/android/local.properties
+**/coverage/
+**/packages/
+**/flutter_export_environment.sh
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/.metadata
