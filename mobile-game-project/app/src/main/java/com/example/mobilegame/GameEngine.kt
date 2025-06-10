@@ -26,113 +26,15 @@ class GameEngine {
         villageQueue.offer(Village("Köy 7", listOf("İksir", "Harita", "Altın")))
     }
 
-    // BST ile Çanta Yönetimi
-    fun addItemToInventoryBST(item: String) {
-        inventoryBST.insert(item)
-        println("$item çantaya eklendi.")
-    }
-
-    fun searchItemInInventoryBST(item: String): Boolean {
-        val found = inventoryBST.search(item)
-        println("$item çantada ${if (found) "bulundu" else "bulunamadı"}.")
-        return found
-    }
-
-    fun deleteItemFromInventoryBST(item: String) {
-        inventoryBST.delete(item)
-        println("$item çantadan silindi.")
-    }
-
-    fun displaySortedInventory() {
-        val sortedItems = inventoryBST.inorderTraversal()
-        println("Çantadaki öğeler (sıralı): ${sortedItems.joinToString(", ")}")
-    }
-
-    // BST ile Köy Öğeleri Yönetimi
-    fun addItemToVillageBST(item: String) {
-        villageBST.insert(item)
-        println("$item köy öğelerine eklendi.")
-    }
-
-    fun searchItemInVillageBST(item: String): Boolean {
-        val found = villageBST.search(item)
-        println("$item köyde ${if (found) "bulundu" else "bulunamadı"}.")
-        return found
-    }
-
-    fun deleteItemFromVillageBST(item: String) {
-        villageBST.delete(item)
-        println("$item köy öğelerinden silindi.")
-    }
-
-    fun displaySortedVillageItems() {
-        val sortedItems = villageBST.inorderTraversal()
-        println("Köy öğeleri (sıralı): ${sortedItems.joinToString(", ")}")
-    }
-
-    // Yığına öğe ekleme (push)
-    fun pushItemToInventory(item: String): Boolean {
-        if (inventory.size < inventoryCapacity) {
-            inventory.push(item) // Öğeyi yığının en üstüne ekle
-            println("Öğe eklendi: $item")
-            return true
+    // Çantadan öğe kullanma
+    fun useItem(itemName: String): Boolean {
+        return if (inventory.contains(itemName)) {
+            inventory.remove(itemName) // Öğeyi çantadan çıkar
+            println("$itemName kullanıldı ve çantadan çıkarıldı.")
+            true
         } else {
-            println("Çanta dolu! Yeni öğe eklemek için aşağıdaki seçeneklerden birini seçin:")
-            println("1. Mevcut öğelerden birini çıkar.")
-            println("2. Mevcut öğeleri sıralayıp görüntüle.")
-            println("Seçiminizi yapın (1 veya 2):")
-
-            val choice = readLine() // Kullanıcıdan seçim yapmasını iste
-            when (choice) {
-                "1" -> {
-                    println("Mevcut öğeler: ${inventory.joinToString(", ")}")
-                    println("Çıkarmak istediğiniz öğeyi seçin (isim girin):")
-
-                    val selectedItem = readLine() // Kullanıcıdan öğe seçmesini iste
-                    if (selectedItem != null && inventory.contains(selectedItem)) {
-                        inventory.remove(selectedItem) // Seçilen öğeyi çantadan çıkar
-                        println("$selectedItem çantadan çıkarıldı.")
-                        inventory.push(item) // Yeni öğeyi ekle
-                        println("Öğe eklendi: $item")
-                        return true
-                    } else {
-                        println("Geçersiz seçim! $item eklenemedi.")
-                        return false
-                    }
-                }
-                "2" -> {
-                    println("Mevcut öğeler (sıralı): ${inventory.sorted().joinToString(", ")}")
-                    println("Çıkarmak istediğiniz öğeyi seçin (isim girin):")
-
-                    val selectedItem = readLine() // Kullanıcıdan öğe seçmesini iste
-                    if (selectedItem != null && inventory.contains(selectedItem)) {
-                        inventory.remove(selectedItem) // Seçilen öğeyi çantadan çıkar
-                        println("$selectedItem çantadan çıkarıldı.")
-                        inventory.push(item) // Yeni öğeyi ekle
-                        println("Öğe eklendi: $item")
-                        return true
-                    } else {
-                        println("Geçersiz seçim! $item eklenemedi.")
-                        return false
-                    }
-                }
-                else -> {
-                    println("Geçersiz seçim! $item eklenemedi.")
-                    return false
-                }
-            }
-        }
-    }
-
-    // Yığından öğe çıkarma (pop)
-    fun popItemFromInventory(): String? {
-        return if (inventory.isNotEmpty()) {
-            val removedItem = inventory.pop() // Yığının en üstündeki öğeyi çıkar
-            println("Öğe çıkarıldı: $removedItem")
-            removedItem
-        } else {
-            println("Çanta boş! Çıkarılacak öğe yok.")
-            null
+            println("$itemName çantada bulunamadı!")
+            false
         }
     }
 
@@ -141,6 +43,36 @@ class GameEngine {
         val currentVillage = villageQueue.poll() // Kuyruktan sıradaki köyü çıkar
         return if (currentVillage != null) {
             println("${currentVillage.name} kurtarıldı!")
+
+            // Son 3 köy için özel şartlar
+            when (currentVillage.name) {
+                "Köy 5" -> {
+                    if (useItem("Balta") && useItem("İksir")) {
+                        println("Köy 5 kurtarıldı! Gerekli öğeler kullanıldı.")
+                    } else {
+                        println("Köy 5 kurtarılamadı! Çantada gerekli öğeler yok.")
+                        return false
+                    }
+                }
+                "Köy 6" -> {
+                    if (useItem("Kristal") && useItem("Büyü Kitabı")) {
+                        println("Köy 6 kurtarıldı! Gerekli öğeler kullanıldı.")
+                    } else {
+                        println("Köy 6 kurtarılamadı! Çantada gerekli öğeler yok.")
+                        return false
+                    }
+                }
+                "Köy 7" -> {
+                    if (useItem("Harita") && useItem("Altın")) {
+                        println("Köy 7 kurtarıldı! Gerekli öğeler kullanıldı.")
+                    } else {
+                        println("Köy 7 kurtarılamadı! Çantada gerekli öğeler yok.")
+                        return false
+                    }
+                }
+            }
+
+            // Diğer köyler için öğeleri çantaya ekleme
             currentVillage.items.forEach { item ->
                 if (!pushItemToInventory(item)) {
                     println("Çanta dolu! $item eklenemedi.")
@@ -163,39 +95,48 @@ class GameEngine {
         println("Kurtarılacak Köyler: ${villageQueue.joinToString { it.name }}")
     }
 
-    fun startGame() {
-        isRunning = true
-        gameState = GameState.RUNNING
-        println("Oyun başladı!")
+    fun displayRemainingVillages() {
+        println("Kurtarılması gereken köyler: ${villageQueue.joinToString { it.name }}")
     }
 
-    fun pauseGame() {
-        isRunning = false
-        gameState = GameState.PAUSED
-        println("Oyun duraklatıldı!")
+    fun displayCurrentVillage() {
+        println("Şu anki köy: ${villageQueue.peek()?.name ?: "Tüm köyler kurtarıldı!"}")
     }
 
-    fun resumeGame() {
-        isRunning = true
-        gameState = GameState.RUNNING
-        println("Oyun devam ediyor!")
-    }
-
-    fun stopGame() {
-        isRunning = false
-        gameState = GameState.STOPPED
-        println("Oyun durduruldu!")
-    }
-
-    fun updateGame(deltaTime: Float) {
-        if (isRunning) {
-            println("Oyun güncelleniyor... DeltaTime: $deltaTime")
+    fun displayVillageItems(villageName: String) {
+        val village = villageQueue.find { it.name == villageName }
+        if (village != null) {
+            println("Köydeki öğeler: ${village.items.joinToString(", ")}")
+        } else {
+            println("$villageName köyü bulunamadı!")
         }
     }
 
-    fun render() {
-        if (isRunning) {
-            println("Oyun grafikleri çiziliyor...")
+    fun checkGameEnd() {
+        if (villageQueue.isEmpty()) {
+            println("Tüm köyler kurtarıldı! Oyun sona erdi.")
+        }
+    }
+
+    fun pushItemToInventory(item: String): Boolean {
+        if (inventory.size < inventoryCapacity) {
+            inventory.push(item)
+            println("$item çantaya eklendi.")
+            return true
+        } else {
+            println("Çanta dolu! Yeni öğe eklemek için mevcut öğelerden birini çıkarın.")
+            return false
+        }
+    }
+
+    fun popItemFromInventory(): String? {
+        return if (inventory.isNotEmpty()) {
+            val removedItem = inventory.pop()
+            println("Öğe çıkarıldı: $removedItem")
+            removedItem
+        } else {
+            println("Çanta boş! Çıkarılacak öğe yok.")
+            null
         }
     }
 
