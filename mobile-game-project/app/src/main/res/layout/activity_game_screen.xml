@@ -1,0 +1,116 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#F5F5F5">
+
+    <!-- Kaçıncı Köyde Olduğumuzu Gösteren TextView -->
+    <TextView
+        android:id="@+id/tvCurrentVillage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Şu an: Köy 1"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="16dp" />
+
+    <!-- Envanter Listesi -->
+    <ListView
+        android:id="@+id/lvInventory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dividerHeight="1dp"
+        android:paddingBottom="16dp" />
+
+    <!-- Çıkarılan Öğeler -->
+    <TextView
+        android:id="@+id/tvRemovedItems"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Çıkarılan Öğeler: Yok"
+        android:textSize="18sp"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="16dp" />
+
+    <!-- Köy Butonları -->
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:rowCount="2"
+        android:columnCount="4"
+        android:padding="8dp">
+
+        <!-- Köy 1 -->
+        <Button
+            android:id="@+id/btnVillage1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="Köy 1"
+            android:enabled="true" />
+
+        <!-- Köy 2 -->
+        <Button
+            android:id="@+id/btnVillage2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="Köy 2"
+            android:enabled="false" />
+
+        <!-- Köy 3 -->
+        <Button
+            android:id="@+id/btnVillage3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="Köy 3"
+            android:enabled="false" />
+
+        <!-- Köy 4 -->
+        <Button
+            android:id="@+id/btnVillage4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="Köy 4"
+            android:enabled="false" />
+
+        <!-- Köy 5 -->
+        <Button
+            android:id="@+id/btnVillage5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="Köy 5"
+            android:enabled="false" />
+
+        <!-- Köy 6 -->
+        <Button
+            android:id="@+id/btnVillage6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="Köy 6"
+            android:enabled="false" />
+
+        <!-- Köy 7 -->
+        <Button
+            android:id="@+id/btnVillage7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="Köy 7"
+            android:enabled="false" />
+    </GridLayout>
+</LinearLayout>
