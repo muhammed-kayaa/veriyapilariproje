@@ -67,10 +67,6 @@ mobile-game-project
 3. Gradle dosyalarıyla projeyi senkronize edin.
 4. Uygulamayı bir Android cihazında veya emülatörde çalıştırın.
 
-### Gelecek İyileştirmeleri
-- Daha fazla seviye ve zorluk ekleme.
-- Çok oyunculu işlevsellik uygulama.
-- Grafikler ve animasyonları geliştirme.
 
 ## Lisans
-Bu proje MIT Lisansı altında lisanslanmıştır - ayrıntılar için LICENSE dosyasına bakın.
+Bu proje MIT Lisansı altında lisanslanmıştır 
